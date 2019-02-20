@@ -1,4 +1,5 @@
 const galleryDiv = document.getElementById('gallery');
+const modalDiv = document.querySelector('#modal-div');
 
 
 const url = "https://randomuser.me/api/?results=12";
@@ -25,3 +26,35 @@ function generateEmployees(data) {
     ).join("");
     galleryDiv.innerHTML = employees; 
 }   
+
+
+function generateModal() {
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            let modal = data.results.map(employee => {
+                `
+                <div class="modal-container">
+                  <div class="modal">
+                  <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                  <div class="modal-info-container">
+                      <img class="modal-img" src="${employee.picture.large}" alt="profile picture">
+                      <h3 id="name" class="modal-name cap">${employee.name.first} ${employee.name.last}</h3>
+                      <p class="modal-text">${employee.email}</p>
+                      <p class="modal-text cap">${employee.location.city}</p>
+                      <hr>
+                      <p class="modal-text">${employee.phone}</p>
+                      <p class="modal-text">${employee.location.street}, ${employee.location.state}, ${employee.location.postcode}</p>
+                      <p class="modal-text">Birthday: ${employee.dob.date}</p>
+                  </div>
+                  </div>
+           </div>
+      
+          `
+            })
+            modalDiv.innerHTML = modal;
+        })
+}
+
+galleryDiv.addEventListener('click', generateModal);
