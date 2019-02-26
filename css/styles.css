@@ -130,7 +130,8 @@ header h1 {
     right: 0;
     bottom: 0;
     left: 0;
-    /* background: rgba(0, 0, 0, 0.7); */
+    background: rgba(0,0,0,0.8);
+    opacity: 1;
 }
 
 .modal {
@@ -156,6 +157,10 @@ header h1 {
     outline: none;
     border-radius: 0.25em;
     border: 1px solid rgba(50, 50, 50, 0.3);
+}
+
+.modal-close-btn:hover { 
+    background: #ff3300b0; 
 }
 
 .modal-img {

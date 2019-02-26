@@ -1,6 +1,9 @@
 const galleryDiv = document.getElementById('gallery');
 const cards = galleryDiv.getElementsByClassName('card');
-const modalDiv = document.getElementById('modal-div');
+const modalContainer = document.getElementsByClassName('modal-container');
+const closeButton = document.getElementsByClassName('modal-close-btn');
+const prevButton = document.getElementsByClassName('modal-prev btn');
+const nextButton = document.getElementsByClassName('modal-next btn');
 
 
 const url = "https://randomuser.me/api/?results=12";
@@ -23,43 +26,90 @@ function generateEmployees(data) {
                 <p class="card-text cap">${employee.location.city}, ${employee.location.state}</p>
              </div> 
         </div> 
+
+        <div class="modal-container" style="display:none">
+            <div class="modal">
+                <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                    <div class="modal-info-container">
+                    <img class="modal-img" src="${employee.picture.large}" alt="profile picture">
+                    <h3 id="name" class="modal-name cap">${employee.name.first} ${employee.name.last}</h3>
+                    <p class="modal-text">${employee.email}</p>
+                    <p class="modal-text cap">${employee.location.city}</p>
+                    <hr>
+                    <p class="modal-text">${employee.phone}</p>
+                    <p class="modal-text">${employee.location.street}, ${employee.location.state}, ${employee.location.postcode}</p>
+                <p class="modal-text">Birthday: ${employee.dob.date}</p>
+                </div>
+                <div class="modal-btn-container">
+                    <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                    <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                </div>
+            </div>
+        </div>  
         `
     ).join("");
     galleryDiv.innerHTML = employees; 
 
-    for (let i = 0; i < cards.length; i++) {
+     //event listener to display card on click
+     for (let i = 0; i < cards.length; i++) { 
         cards[i].addEventListener('click', function() {
-        
-            let modal = `
-    
-                    <div class="modal-container">
-                    <div class="modal">
-                        <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                            <div class="modal-info-container">
-                            <img class="modal-img" src="${data[i].picture.large}" alt="profile picture">
-                            <h3 id="name" class="modal-name cap">${data[i].name.first} ${data[i].name.last}</h3>
-                            <p class="modal-text">${data[i].email}</p>
-                            <p class="modal-text cap">${data[i].location.city}</p>
-                            <hr>
-                            <p class="modal-text">${data[i].phone}</p>
-                            <p class="modal-text">${data[i].location.street}, ${data[i].location.state}, ${data[i].location.postcode}</p>
-                        <p class="modal-text">Birthday: ${data[i].dob.date}</p>
-                        </div>
-                    </div>
-                    </div>  
-            `
-            modalDiv.innerHTML = modal;  
+            if (cards[i]) {
+                modalContainer[i].style.display = '';
+            } else {
+                modalContainer[i].style.display = 'none';
+            }   
+        })
+
+    }
+
+      //event listener to close a card on card
+      for (let i = 0; i < closeButton.length; i++) {
+        closeButton[i].addEventListener('click', () => {
+               if (closeButton[i]) {
+                       modalContainer[i].style.display = 'none'; 
+               }
+           })
+       }
+
+         //event listener to show a prev card when previous button is clicked
+        for (let i = 0; i < prevButton.length; i++) {
+            prevButton[i].addEventListener('click', function(){
+                let len = modalContainer.length;
+                let prevModal = modalContainer[(i+len-1)%len];
+            
+                if (prevButton) {
+                    modalContainer[i].style.display = 'none'; 
+                    prevModal.style.display = '';
+            
+                } else {
+                    prevModal.style.display = 'none';
+                }
             })
-    
-            const closeButton = document.getElementById('modal-close-btn');
-            const modalContainer = document.querySelector('.modal-container');
-    
-            if (closeButton) {
-                modalContainer.style.display = 'none';
-            }
-            
-            
         }
+
+        //event listener to show next card when next button is clicked
+        for (let i = 0; i < nextButton.length; i++) {
+            nextButton[i].addEventListener('click', function() {
+                let len = modalContainer.length;
+                let prevModal = modalContainer[(i+len-1)%len];
+                let nextModal = modalContainer[(i+1)%len];
+
+                if (nextButton) {
+                    modalContainer[i].style.display = 'none'; 
+                    nextModal.style.display = '';
+                    prevModal.style.display = 'none';
+                } else {
+                    nextModal.style.display = 'none';
+
+                }
+            })
+
+        }
+
+
+
+
+   
 }   
 
 
