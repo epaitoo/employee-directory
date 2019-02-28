@@ -16,7 +16,7 @@ html, body {
 body {
     font-family: "Nunito", sans-serif;
     text-align: center;
-    background: rgba(235, 235, 235, 0.9);
+    background: rgb(221,221,221);
 }
 
 header {
@@ -30,14 +30,15 @@ header {
 
 header h1 {
     font-size: 1.25em;
-    color: rgba(50, 50, 50, 0.9);
+    color: rgba(240, 63, 32, 0.459);
+    font-weight: bold;
     margin-top: 35px;
 }
 
 .search-input {
     padding: 0.4rem 1rem;
     border: 1px solid rgba(200, 200, 200, 0.9);
-    border-radius: 0.25rem 0 0 0.25rem ;
+    border-radius: 50px;
     max-width: 20rem;
     transition: .4s ease-out;
     outline: none;
@@ -89,13 +90,13 @@ header h1 {
     padding: 10px;
     background: rgba(245, 245, 245, 0.9);
     border-radius: 0.25em;
-    border: 1px solid rgba(50, 50, 50, 0.3);
+    border: 1px solid rgb(234,234,234);
     transition: .4s ease-out;
     overflow: hidden;
 }
 
 .card-img {
-    width: 95px;
+    width: 80px;
     margin: 10px 15px auto 10px;
     border-radius: 50%;
 }
@@ -152,15 +153,16 @@ header h1 {
     top: 15px;
     right: 15px;
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.8);
+    color:  rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     outline: none;
-    border-radius: 0.25em;
+    border-radius: 50%;
     border: 1px solid rgba(50, 50, 50, 0.3);
 }
 
 .modal-close-btn:hover { 
-    background: #ff3300b0; 
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.8); 
 }
 
 .modal-img {
@@ -254,11 +256,12 @@ header h1 {
 
     .card:hover {
         background: rgba(255, 255, 255, 1);
-        border: 1px solid rgba(50, 50, 50, 0.9);
+        border: 1px solid rgba(240, 63, 32, 0.459);
     }
 
     .card:hover .card-text {
         color: rgba(25, 25, 25, 1); 
+         
     }
 
     .btn:hover {
