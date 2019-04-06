@@ -1,5 +1,7 @@
 # Public API Request
 
+View demo [here](https://epaitoo.github.io/employee-directory/)
+
 This app is built for a fictional company called Awesome Startup, a distributed company with remote employees working all over the world. 
 They need a way for employees to share contact information with each other. The employee directory uses the Random User Generator API (https://randomuser.me/) to grab information for 12 random "employees". 
 This app uses the browser's Fetch API to request a JSON object from the API and parse the data so that 12 employees are listed with their thumbnail image, full name, email, and location.
